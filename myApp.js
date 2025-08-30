@@ -1,9 +1,9 @@
 let express = require('express');
 let app = express();
 
-// เพิ่ม route ที่ root "/"
+// ส่งไฟล์ HTML กลับเมื่อมีการ GET มาที่ root "/"
 app.get("/", function(req, res) {
-  res.send("Hello Express");
+  res.sendFile(__dirname + "/views/index.html");
 });
 
 module.exports = app;
