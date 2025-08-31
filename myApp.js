@@ -18,14 +18,11 @@ app.get("/:word/echo", (req, res) => {
 });
 
 // ส่ง JSON เมื่อ GET "/json"
-app.get("/now", 
-  function(req, res, next) {
-    req.time = new Date().toString();
-    next();
-  }, 
-  function(req, res) {
-    res.json({ time: req.time });
-  }
-);
+// ✅ รับค่าจาก query string เช่น /name?first=Yoke&last=Hope
+app.get("/name", (req, res) => {
+  const firstName = req.query.first;
+  const lastName = req.query.last;
 
+  res.json({ name: `${firstName} ${lastName}` });
+});
 module.exports = app;
