@@ -2,6 +2,12 @@ require('dotenv').config();
 let express = require('express');
 let app = express();
 
+// ✅ Root-level logger middleware
+app.use(function(req, res, next) {
+  console.log(req.method + " " + req.path + " - " + req.ip);
+  next(); // อย่าลืม ไม่งั้น server จะค้าง
+});
+
 // ให้ Express เสิร์ฟไฟล์ static จากโฟลเดอร์ "public"
 app.use("/public", express.static(__dirname + "/public"));
 
