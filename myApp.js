@@ -12,8 +12,9 @@ app.use(function(req, res, next) {
 app.use("/public", express.static(__dirname + "/public"));
 
 // ส่งหน้า index.html กลับเมื่อ GET "/"
-app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/views/index.html");
+app.get("/:word/echo", (req, res) => {
+  const word = req.params.word;  // ดึงค่าพารามิเตอร์จาก URL
+  res.json({ echo: word });      // ส่งกลับเป็น JSON
 });
 
 // ส่ง JSON เมื่อ GET "/json"
