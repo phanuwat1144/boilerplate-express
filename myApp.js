@@ -17,14 +17,14 @@ app.get("/", function(req, res) {
 });
 
 // ส่ง JSON เมื่อ GET "/json"
-app.get("/json", function(req, res) {
-  let message = "Hello json";
-
-  if (process.env.MESSAGE_STYLE === "uppercase") {
-    message = message.toUpperCase();
+app.get("/now", 
+  function(req, res, next) {
+    req.time = new Date().toString();
+    next();
+  }, 
+  function(req, res) {
+    res.json({ time: req.time });
   }
-
-  res.json({ message: message });
-});
+);
 
 module.exports = app;
